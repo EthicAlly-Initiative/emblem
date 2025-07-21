@@ -1,0 +1,62 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: content-box;
+}
+
+:root {
+	// overrides
+	--pico-spacing: 0;
+	// manual system
+	--spacing-1: 10px;
+	--spacing-2: 20px;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(
+		0deg,
+		rgba(2, 0, 36, 1) 0%,
+		rgba(9, 9, 121, 1) 35%,
+		rgba(0, 212, 255, 1) 100%
+	);
+}
+
+.emblem-controls {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 0 var(--spacing-2) var(--spacing-2);
+	display: flex;
+	gap: var(--spacing-2);
+	flex-wrap: wrap;
+
+	justify-content: center;
+	align-items: center;
+
+	[name="size"] {
+		width: 20%;
+	}
+
+	legend {
+		padding-bottom: var(--spacing-1);
+	}
+}
+
+svg:not(:host),
+svg:not(:root) {
+	overflow: visible;
+}
+
+fieldset {
+	width: fit-content;
+}

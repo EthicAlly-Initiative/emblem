@@ -35,7 +35,7 @@ body {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	padding: 0 var(--spacing-2) var(--spacing-2);
+	padding-bottom: var(--spacing-2);
 	display: flex;
 	gap: var(--spacing-2);
 	flex-wrap: wrap;

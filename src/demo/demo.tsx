@@ -26,9 +26,11 @@ async function createAndSaveLogo(isBitmap?: boolean) {
 	link.click();
 }
 
+const initialSize = document.body.clientWidth < 600 ? "312px" : "512px";
+
 function EmblemDemoApp() {
 	const [logoKey, setLogoKey] = useState("");
-	const [size, setSize] = useState("512px");
+	const [size, setSize] = useState(initialSize);
 	const [isSpinning, setIsSpinning] = useState(false);
 	const [animationStage, setAnimationStage] =
 		useState<EmblemContextOptions["animationStage"]>(null);

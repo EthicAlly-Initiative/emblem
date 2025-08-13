@@ -6,6 +6,7 @@
 		"prepare": "vite build",
 		"start": "vite dev",
 		"build": "vite build",
+		"postbuild": "tsc --project tsconfig.build.json --emitDeclarationOnly",
 		"build:site": "EAI_EXPORT_SITE=1 vite build"
 	},
 	"repository": {
@@ -13,7 +14,7 @@
 		"url": "git+https://github.com/EthicAlly-Initiative/emblem.git"
 	},
 	"homepage": "https://github.com/EthicAlly-Initiative/emblem#readme",
-	"author": "",
+	"author": "Flynn <dev@flyn.ca>",
 	"license": "MIT",
 	"description": "",
 	"dependencies": {
@@ -33,6 +34,7 @@
 		"@types/react-dom": "^19.1.6",
 		"@types/three": "^0.178.1",
 		"html-to-image": "^1.11.13",
+		"typescript": "^5",
 		"vite": "^7.0.5",
 		"vite-bundle-analyzer": "^1.2.1"
 	}

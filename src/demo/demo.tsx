@@ -2,16 +2,20 @@ import "./demo.scss";
 
 import { createRoot } from "react-dom/client";
 import { Fragment, useState } from "react";
-import { toSvg, toPng } from "html-to-image";
+import initLiveAdapter from "./liveAdapter";
 
 import { type EmblemContextOptions } from "../useEmblemContext";
 import Emblem from "../Emblem";
+
+const appRoot = document.getElementById("app")!;
+const { initialValues } = initLiveAdapter(appRoot);
 
 // When we re-init, we want to force a reconcile of the entire react-tree
 // useful for animation re-init
 const newRandomKey = () => Math.random().toString(16);
 
 async function createAndSaveLogo(isBitmap?: boolean) {
+	const { toSvg, toPng } = await import("html-to-image");
 	const logo = document.querySelector<HTMLDivElement>(".eai-emblem")!;
 	// const planetRef = logo.querySelector("canvas")!;
 
@@ -26,12 +30,10 @@ async function createAndSaveLogo(isBitmap?: boolean) {
 	link.click();
 }
 
-const initialSize = document.body.clientWidth < 600 ? "312px" : "512px";
-
 function EmblemDemoApp() {
 	const [logoKey, setLogoKey] = useState("");
-	const [size, setSize] = useState(initialSize);
-	const [isSpinning, setIsSpinning] = useState(false);
+	const [size, setSize] = useState(initialValues.size);
+	const [isSpinning, setIsSpinning] = useState(initialValues.isSpinning);
 	const [animationStage, setAnimationStage] =
 		useState<EmblemContextOptions["animationStage"]>(null);
 
@@ -44,7 +46,7 @@ function EmblemDemoApp() {
 	] as EmblemContextOptions["animationStage"][];
 
 	// Group this on it's own, so it's more organized/contained from the actual component
-	const controls = (
+	const controls = !initialValues.hideOptions ? (
 		<div className="emblem-controls">
 			<button onClick={() => setLogoKey(newRandomKey())}>Reinit</button>
 			<button onClick={() => createAndSaveLogo(true)}>Capture PNG</button>
@@ -75,7 +77,7 @@ function EmblemDemoApp() {
 				)}
 			</fieldset>
 		</div>
-	);
+	) : null;
 
 	return (
 		<>
@@ -112,4 +114,4 @@ function renderRadioOptions<T extends readonly unknown[]>(
 	});
 }
 
-createRoot(document.getElementById("app")!).render(<EmblemDemoApp />);
+createRoot(appRoot).render(<EmblemDemoApp />);

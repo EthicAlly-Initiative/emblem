@@ -2,8 +2,9 @@
 	"name": "@ethic/emblem",
 	"version": "0.1.0",
 	"module": "dist/emblem.mjs",
+	"types": "dist/Emblem.d.ts",
 	"scripts": {
-		"prepare": "vite build",
+		"prepare": "npm run build",
 		"start": "vite dev",
 		"build": "vite build",
 		"postbuild": "tsc --project tsconfig.build.json --emitDeclarationOnly",

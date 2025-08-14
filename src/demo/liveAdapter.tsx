@@ -32,6 +32,11 @@ export default function getUrlSettings(appRoot: HTMLElement) {
 		size: params.get("size") || fallbackSize,
 		isSpinning: truthy.includes(params.get("spin")!) || false,
 		hideWater: truthy.includes(params.get("hideWater")!) || false,
+		animationStage: ["loading", "final"].includes(params.get("initStage")!)
+			? (params.get(
+					"initStage"
+			  ) as EmblemContextOptions["animationStage"])
+			: null,
 	};
 
 	return { initialValues, hideOptions };

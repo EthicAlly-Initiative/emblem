@@ -17,8 +17,6 @@ const newRandomKey = () => Math.random().toString(16);
 async function createAndSaveLogo(isBitmap?: boolean) {
 	const { toSvg, toPng } = await import("html-to-image");
 	const logo = document.querySelector<HTMLDivElement>(".eai-emblem")!;
-	// const planetRef = logo.querySelector("canvas")!;
-
 	const output = isBitmap ? await toPng(logo) : await toSvg(logo);
 
 	const extension = isBitmap ? "png" : "svg";
@@ -34,8 +32,9 @@ function EmblemDemoApp() {
 	const [logoKey, setLogoKey] = useState("");
 	const [size, setSize] = useState(initialValues.size);
 	const [isSpinning, setIsSpinning] = useState(initialValues.isSpinning);
-	const [animationStage, setAnimationStage] =
-		useState<EmblemContextOptions["animationStage"]>(null);
+	const [animationStage, setAnimationStage] = useState<
+		EmblemContextOptions["animationStage"]
+	>(initialValues.animationStage);
 	const [hideWater, setHideWater] = useState(initialValues.hideWater);
 
 	const truthyValues = [true, false] as const;

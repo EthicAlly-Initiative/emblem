@@ -84,7 +84,7 @@
 		border-radius: 50%;
 		background-color: rgb(22, 22, 173);
 
-		transition: opacity 0.4s;
+		transition: opacity 0.2s;
 		opacity: 0;
 
 		// animation styles
@@ -93,7 +93,13 @@
 		}
 
 		&--loading {
+			transition-duration: 1s;
 			opacity: 0;
+		}
+
+		&--final {
+			transition-duration: 1s;
+			opacity: 1;
 		}
 	}
 }

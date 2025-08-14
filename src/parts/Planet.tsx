@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useTexture } from "@react-three/drei";

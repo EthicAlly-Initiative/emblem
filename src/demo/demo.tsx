@@ -2,13 +2,13 @@ import "./demo.scss";
 
 import { createRoot } from "react-dom/client";
 import { Fragment, useState } from "react";
-import getUrlSettings, { useLiveSizeListener } from "./liveAdapter";
+import getUrlSettings, { useLiveListener } from "./liveAdapter";
 
 import { type EmblemContextOptions } from "../useEmblemContext";
 import Emblem from "../Emblem";
 
 const appRoot = document.getElementById("app")!;
-const { initialValues } = getUrlSettings(appRoot);
+const { initialValues, hideOptions } = getUrlSettings(appRoot);
 
 // When we re-init, we want to force a reconcile of the entire react-tree
 // useful for animation re-init
@@ -46,10 +46,11 @@ function EmblemDemoApp() {
 	] as EmblemContextOptions["animationStage"][];
 
 	// Use live frame interactions
-	useLiveSizeListener(setSize, setAnimationStage);
+	useLiveListener(setSize, setAnimationStage);
 
 	// Group this on it's own, so it's more organized/contained from the actual component
-	const controls = !initialValues.hideOptions ? (
+	// Only show when the query param isn't present
+	const controls = !hideOptions ? (
 		<div className="emblem-controls">
 			<button onClick={() => setLogoKey(newRandomKey())}>Reinit</button>
 			<button onClick={() => createAndSaveLogo(true)}>Capture PNG</button>

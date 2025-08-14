@@ -50,6 +50,23 @@ function WorldRenderWorld() {
 	);
 }
 
+export function PlanetWaters() {
+	const { isReady, animationStage, hideWater } = useEmblemContext();
+
+	if (hideWater) return;
+
+	return (
+		<div
+			className={clsx(
+				"eai-emblem__water",
+				isReady && "eai-emblem__water--ready",
+				animationStage == "loading" && "eai-emblem__water--loading",
+				animationStage == "final" && "eai-emblem__water--final"
+			)}
+		/>
+	);
+}
+
 export default function Planet() {
 	const { animationStage, isReady } = useEmblemContext();
 

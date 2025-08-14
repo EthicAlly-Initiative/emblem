@@ -5,7 +5,7 @@ import {
 	type EmblemContextOptions,
 } from "./useEmblemContext";
 import People from "./parts/People";
-import Planet from "./parts/Planet";
+import Planet, { PlanetWaters } from "./parts/Planet";
 
 import "./Emblem.scss";
 
@@ -30,6 +30,7 @@ export default function EthicAllyEmblem({
 				className={`eai-emblem${(className && " " + className) || ""}`}
 				style={styles}
 			>
+				<PlanetWaters />
 				<Planet />
 				<People />
 			</div>

@@ -3,6 +3,7 @@ import React, { useContext, createContext, useMemo, useState } from "react";
 export interface EmblemContextOptions {
 	animationStage?: "loading" | "final" | null;
 	isSpinning?: boolean | null;
+	hideWater?: boolean | null;
 }
 
 function useEmblemContextProviderValue(config: EmblemContextOptions) {
@@ -14,7 +15,7 @@ function useEmblemContextProviderValue(config: EmblemContextOptions) {
 			isReady,
 			setIsReady,
 		};
-	}, [config.animationStage, config.isSpinning, isReady]);
+	}, [config.animationStage, config.isSpinning, config.hideWater, isReady]);
 }
 
 type EmblemContextValueType = ReturnType<typeof useEmblemContextProviderValue>;

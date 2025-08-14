@@ -31,9 +31,8 @@ export default function getUrlSettings(appRoot: HTMLElement) {
 	const initialValues = {
 		size: params.get("size") || fallbackSize,
 		isSpinning: truthy.includes(params.get("spin")!) || false,
+		hideWater: truthy.includes(params.get("hideWater")!) || false,
 	};
-
-	console.log(params.get("size"), initialValues);
 
 	return { initialValues, hideOptions };
 }

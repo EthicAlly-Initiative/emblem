@@ -36,8 +36,9 @@ function EmblemDemoApp() {
 	const [isSpinning, setIsSpinning] = useState(initialValues.isSpinning);
 	const [animationStage, setAnimationStage] =
 		useState<EmblemContextOptions["animationStage"]>(null);
+	const [hideWater, setHideWater] = useState(initialValues.hideWater);
 
-	const allSpinningValues = [true, false] as const;
+	const truthyValues = [true, false] as const;
 
 	const allAnimationStages = [
 		"loading",
@@ -67,9 +68,19 @@ function EmblemDemoApp() {
 			<fieldset>
 				<legend>Spinning:</legend>
 				{renderRadioOptions(
-					allSpinningValues,
+					truthyValues,
 					setIsSpinning,
-					isSpinning
+					isSpinning,
+					"spin"
+				)}
+			</fieldset>
+			<fieldset>
+				<legend>Hide Water:</legend>
+				{renderRadioOptions(
+					truthyValues,
+					setHideWater,
+					hideWater,
+					"water"
 				)}
 			</fieldset>
 			<fieldset>
@@ -90,6 +101,7 @@ function EmblemDemoApp() {
 				size={size}
 				isSpinning={isSpinning}
 				animationStage={animationStage}
+				hideWater={hideWater}
 			/>
 			{controls}
 		</>
@@ -99,10 +111,11 @@ function EmblemDemoApp() {
 function renderRadioOptions<T extends readonly unknown[]>(
 	values: T,
 	setValue: (value: T[number]) => void,
-	selectedValue: T[number]
+	selectedValue: T[number],
+	name?: string
 ) {
 	return values.map((value) => {
-		const key = `item-${value}`;
+		const key = `${name || "item"}-${value}`;
 
 		return (
 			<Fragment key={key}>

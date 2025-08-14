@@ -2,13 +2,13 @@ import "./demo.scss";
 
 import { createRoot } from "react-dom/client";
 import { Fragment, useState } from "react";
-import initLiveAdapter from "./liveAdapter";
+import getUrlSettings, { useLiveSizeListener } from "./liveAdapter";
 
 import { type EmblemContextOptions } from "../useEmblemContext";
 import Emblem from "../Emblem";
 
 const appRoot = document.getElementById("app")!;
-const { initialValues } = initLiveAdapter(appRoot);
+const { initialValues } = getUrlSettings(appRoot);
 
 // When we re-init, we want to force a reconcile of the entire react-tree
 // useful for animation re-init
@@ -44,6 +44,9 @@ function EmblemDemoApp() {
 		"final",
 		null,
 	] as EmblemContextOptions["animationStage"][];
+
+	// Use live frame interactions
+	useLiveSizeListener(setSize, setAnimationStage);
 
 	// Group this on it's own, so it's more organized/contained from the actual component
 	const controls = !initialValues.hideOptions ? (

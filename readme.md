@@ -15,12 +15,13 @@ Based on the original EAI emblem (implemented in the Agent prototype), this vers
 ## Usage
 
 ```jsx
-import EAI from '@ethic/emblem';
+import EthicAllyEmblem from '@ethic/emblem';
+import '@ethic/emblem/dist/emblem.css';
 
 <EAI
     className=""
     size="100px" | "10em" | "30rem" | "10ch"
-    animatedStage="loading" | "final" | null
+    animateStage="loading" | "final" | null
 />
 ```
 

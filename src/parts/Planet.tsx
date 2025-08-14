@@ -11,8 +11,7 @@ import useEmblemContext from "../useEmblemContext";
 import baseTexture from "./planetMap.svg";
 
 function CameraInitialSettings() {
-	const { isSpinning } = useEmblemContext();
-	const [isReady, setIsReady] = useState(false);
+	const { isSpinning, isReady, setIsReady } = useEmblemContext();
 	const controls = useRef<OrbitControlsImpl | null>(null);
 
 	useEffect(() => {
@@ -52,12 +51,13 @@ function WorldRenderWorld() {
 }
 
 export default function Planet() {
-	const { animationStage } = useEmblemContext();
+	const { animationStage, isReady } = useEmblemContext();
 
 	return (
 		<Canvas
 			className={clsx(
 				"eai-emblem__world",
+				isReady && "eai-emblem__world--ready",
 				animationStage && "eai-emblem__world--animated",
 				animationStage == "loading" && "eai-emblem__world--loading",
 				animationStage == "final" && "eai-emblem__world--final"

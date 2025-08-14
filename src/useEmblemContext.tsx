@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useMemo } from "react";
+import React, { useContext, createContext, useMemo, useState } from "react";
 
 export interface EmblemContextOptions {
 	animationStage?: "loading" | "final" | null;
@@ -6,11 +6,15 @@ export interface EmblemContextOptions {
 }
 
 function useEmblemContextProviderValue(config: EmblemContextOptions) {
+	const [isReady, setIsReady] = useState(false);
+
 	return useMemo(() => {
 		return {
 			...config,
+			isReady,
+			setIsReady,
 		};
-	}, [config.animationStage, config.isSpinning]);
+	}, [config.animationStage, config.isSpinning, isReady]);
 }
 
 type EmblemContextValueType = ReturnType<typeof useEmblemContextProviderValue>;

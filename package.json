@@ -1,6 +1,6 @@
 {
 	"name": "@ethic/emblem",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"module": "dist/emblem.mjs",
 	"types": "dist/Emblem.d.ts",
 	"scripts": {
